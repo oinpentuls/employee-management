@@ -7,14 +7,19 @@ import { Link } from '@inertiajs/vue3';
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
         <div>
             <Link href="/">
-                <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
+            <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
             </Link>
         </div>
 
-        <div
-            class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
-        >
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <slot />
         </div>
     </div>
+
+    <footer>
+        <a href="https://github.com/oinpentuls/employee-management"
+            class="group inline-flex items-center hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+            <img width="30" src="../../assets/github-mark/github-mark-white.svg" alt="github mark">
+        </a>
+    </footer>
 </template>
