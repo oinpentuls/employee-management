@@ -50,11 +50,12 @@ const submit = () => {
                     <div class="w-full">
                         <InputLabel for="department-description" value="Description" />
                         <TextInput id="department-description" type="text" class="block w-full max-w-xl"
-                            v-model="form.description" required aria-required="true" />
+                            v-model="form.description" />
                         <InputError class="mt-2" :message="form.errors.description" />
                     </div>
 
-                    <PrimaryButton class="max-w-xl" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">Add
+                    <PrimaryButton class="max-w-xl" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        Add
                         Department</PrimaryButton>
                 </div>
             </form>

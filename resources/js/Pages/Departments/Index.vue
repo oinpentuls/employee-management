@@ -6,14 +6,15 @@ type Department = {
     uuid: String
     name: String
     description: String
-    employeeCounts: number
 }
 
-const departments: Department[] = [
-    { uuid: "535c4cdf-70a0-4615-82f2-443e95c86aec", name: "IT", description: "IT & software engineering department for help a", employeeCounts: 80 },
-    { uuid: "535c4cdf-70a0-4615-82f2-443e95c86aeb", name: "Finance", description: "Purchasing", employeeCounts: 80 },
-    { uuid: "535c4cdf-70a0-4615-82f2-443e95c86aed", name: "Accounting", description: "Book keeper", employeeCounts: 80 },
-]
+type Response = {
+    data: Department[],
+}
+
+defineProps<({
+    departments: Response
+})>()
 </script>
 
 <template>
@@ -35,10 +36,10 @@ const departments: Department[] = [
         </template>
 
         <div class="py-12 flex flex-col gap-2 max-w-3xl mx-auto">
-            <div v-if="departments.length <= 0" class="h3">There is no department. Create one <button
+            <div v-if="departments.data.length <= 0" class="h3">There is no department. Create one <button
                     class="">create</button></div>
 
-            <div v-else v-for="department in departments" class="max-w-3xl sm:px-6 lg:px-8 cursor-pointer">
+            <div v-else v-for="department in departments.data" class="max-w-3xl sm:px-6 lg:px-8 cursor-pointer">
                 <div class="bg-white overflow-hidden shadow sm:rounded-lg">
 
                     <Link :href="route('departments.show', { uuid: department.uuid })">
@@ -49,7 +50,7 @@ const departments: Department[] = [
                         </div>
 
                         <div class="flex flex-col gap-4">
-                            <p>{{ department.employeeCounts }} peoples</p>
+                            <p>{{ 80 }} peoples</p>
                         </div>
                     </div>
                     </Link>

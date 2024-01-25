@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\DepartmentRequest;
+use App\Services\DepartmentService;
 use Inertia\Inertia;
 
 class DepartmentController extends Controller
 {
+    public function __construct(
+        protected DepartmentService $service)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Departments/Index');
+        $departments = $this->service->getAllDepartments();
+
+        return Inertia::render('Departments/Index', ['departments' => $departments]);
     }
 
     /**
@@ -26,8 +34,10 @@ class DepartmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
+        $department = $this->service->addDepartment($request);
+
         return to_route("departments.index");
     }
 
@@ -36,32 +46,42 @@ class DepartmentController extends Controller
      */
     public function show(string $uuid)
     {
+        $department = $this->service->getDepartment($uuid);
+
         return Inertia::render("Departments/Details", [
-            "uuid" => $uuid
+            "department" => $department
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $uuid)
     {
-        return Inertia::render('Departments/Edit');
+        $department = $this->service->getDepartment($uuid);
+
+        return Inertia::render("Departments/Edit", [
+            "department" => $department
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(string $uuid, DepartmentRequest $request)
     {
-        //
+        $department = $this->service->updateDepartment($uuid, $request);
+
+        return to_route("departments.show", $uuid);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function remove(string $uuid)
     {
-        //
+        $department = $this->service->getDepartment($uuid);
+
+        return to_route("departments.index");
     }
 }

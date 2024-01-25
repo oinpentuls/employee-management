@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
+            $table->string('name')->default('');
+            $table->string('description')->nullable()->default('');
+
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

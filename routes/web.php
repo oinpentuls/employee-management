@@ -48,7 +48,7 @@ Route::middleware("auth")->group(function () {
     Route::get("/departments/{uuid}", [DepartmentController::class, "show"])->name("departments.show");
     Route::get("/departments/{uuid}/edit", [DepartmentController::class, "edit"])->name("departments.edit");
     Route::put("/departments/{uuid}/edit", [DepartmentController::class, "update"])->name("departments.update");
-    Route::delete("/departments/{uuid}", [DepartmentController::class, "delete"])->name("departments.delete");
+    Route::delete("/departments/{uuid}", [DepartmentController::class, "remove"])->name("departments.remove");
 });
 
 require __DIR__ . "/auth.php";
