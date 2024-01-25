@@ -33,8 +33,12 @@ const showingNavigationDropdown = ref(false);
                                     Dashboard
                                 </NavLink>
 
-                                <NavLink :href="route('employee')" :active="route().current('employee')">
+                                <NavLink :href="route('employees.index')" :active="route().current('employees.index')">
                                     Employee
+                                </NavLink>
+
+                                <NavLink :href="route('departments.index')" :active="route().current('departments.index')">
+                                    Department
                                 </NavLink>
                             </div>
                         </div>
@@ -141,7 +145,7 @@ const showingNavigationDropdown = ref(false);
             </nav>
 
             <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
+            <header class="" v-if="$slots.header">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>

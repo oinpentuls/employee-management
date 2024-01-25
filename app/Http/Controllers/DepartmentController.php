@@ -5,22 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class EmployeeController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render("Employees/Index");
+        return Inertia::render('Departments/Index');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function add()
     {
-        //
+        return Inertia::render('Departments/Add');
     }
 
     /**
@@ -28,15 +28,17 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return to_route("departments.index");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $uuid)
     {
-        //
+        return Inertia::render("Departments/Details", [
+            "uuid" => $uuid
+        ]);
     }
 
     /**
@@ -44,7 +46,7 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return Inertia::render('Departments/Edit');
     }
 
     /**
