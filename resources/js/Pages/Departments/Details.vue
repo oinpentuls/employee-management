@@ -28,7 +28,7 @@ defineProps<({
                         Department Detail
                     </p>
 
-                    <Link as="button" :href="route('departments.edit', 'awdoakdowkod')"
+                    <Link as="button" :href="route('departments.edit', { uuid: department.data.uuid })"
                         class="text-sm bg-blue-300 text-white p-2 rounded-md">
                     Edit Department
                     </Link>
@@ -48,6 +48,11 @@ defineProps<({
 
                         <div class="flex flex-col gap-4">
                             <p>80 peoples</p>
+
+                            <!-- <Link as="button" :href="route('departments.remove', { uuid: department.data.uuid })"
+                                class="text-sm bg-red-500 py-1 text-white rounded-md">
+                            Remove department ?
+                            </Link> -->
                         </div>
                     </div>
                 </div>
